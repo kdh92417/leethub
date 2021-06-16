@@ -31,7 +31,7 @@ class Solution:
     
 '''
 - sort() 내장함수를 이용한 풀이
-- 4배 가량 
+- 4배 가량 성능이 좋아짐
 '''
 class Solution:        
     def sortList(self, head: ListNode) -> ListNode:

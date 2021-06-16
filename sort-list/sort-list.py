@@ -27,3 +27,36 @@ class Solution:
         l2 = self.sortList(slow)
         
         return self.mergeTwoLists(l1, l2)
+    
+    
+'''
+- sort() 내장함수를 이용한 풀이
+- 4배 가량 
+'''
+class Solution:        
+    def sortList(self, head: ListNode) -> ListNode:
+        
+        # 파이썬 리스트로 만들기위한 변수 설정
+        p = head
+        lst = []
+        
+        # 연결리스트 -> 파이썬 리스트로 변경
+        while p:
+            lst.append(p.val)
+            p = p.next
+        
+        # 내장함수를 이용한 정렬
+        lst.sort()
+        
+        # 파이썬 리스트 -> 연결리스트
+        # p는 연결리스트를 순회하기 위한 포인터
+        p = head
+        for i in range(len(lst)):
+            p.val = lst[i]
+            p = p.next
+            
+        return head
+        
+            
+        
+            

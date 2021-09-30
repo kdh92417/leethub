@@ -1,34 +1,27 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        visited = [0 for _ in range(numCourses)]
         graph = collections.defaultdict(list)
         for x, y in prerequisites:
             graph[x].append(y)
         
-        traced  = set()
-        visited = set()
-        
-        def dfs(i):
-            if i in traced:
+        def dfs(x):
+            
+            if visited[x] == -1:
                 return False
-            if i in visited:
+            elif visited[x] == 1:
                 return True
             
-            
-            traced.add(i)
-            for y in graph[i]:
+            visited[x] = -1
+            for y in graph[x]:
                 if not dfs(y):
                     return False
-                
-            traced.remove(i)
-            visited.add(i)
-            
+            visited[x] = 1
+        
             return True
         
-        for i in list(graph):
-            if not dfs(i):
+        for y in list(graph):
+            if not dfs(y):
                 return False
         
         return True
-                
-            
-        

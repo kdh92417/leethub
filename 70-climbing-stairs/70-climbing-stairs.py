@@ -3,8 +3,7 @@ class Solution:
     def climbStairs(self, n: int) -> int:
         
         if n < 3:
-            self.dp[n] = n
-            return self.dp[n]
+            return n
         elif self.dp[n]:
             return self.dp[n]
             

@@ -15,10 +15,11 @@ class Solution:
         # start, end 지정
         for _ in range(left - 1):
             start = start.next
+            
         end = start.next
 
         # 반복하면서 노드 차례대로 뒤집기
         for _ in range(right - left):
-            tmp, start.next, end.next = start.next, end.next, end.next.next
+            tmp, end.next, start.next = start.next, end.next.next, end.next
             start.next.next = tmp
         return root.next

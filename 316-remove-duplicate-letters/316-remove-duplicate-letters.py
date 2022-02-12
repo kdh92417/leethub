@@ -1,20 +1,12 @@
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
-        c, stack = collections.Counter(s), []
-        seen = set()
-        
-        for char in s:
-            c[char] -= 1
-            print(stack, char)
-            if char in seen:
-                print('continue')
-                continue
+        print('sorted s : ', sorted(set(s)))
+        for char in sorted(set(s)):
+            suffix = s[s.index(char):]
+            print(char, s.index(char), suffix)
             
-            while stack and char < stack[-1] and c[stack[-1]] > 0:
-                seen.remove(stack.pop())
-                
+            if set(s) == set(suffix):
+                print('parameter : ', suffix.replace(char, ''), 'set s : ', set(s))
+                return char + self.removeDuplicateLetters(suffix.replace(char, ''))
+        return ''
             
-            seen.add(char)
-            stack.append(char)
-            
-        return ''.join(stack)

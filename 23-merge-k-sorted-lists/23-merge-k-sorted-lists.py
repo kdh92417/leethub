@@ -8,14 +8,18 @@ class Solution:
         
         new_list = []
         root = answer = ListNode(None)
-        for l in lists:
-            while l:
-                heapq.heappush(new_list, l.val)
-                l = l.next
         
-        
+        for i in range(len(lists)):
+            if lists[i]:
+                heapq.heappush(new_list, (lists[i].val, i, lists[i]))
+                
         while new_list:
-            answer.next = ListNode(heapq.heappop(new_list))
-            answer = answer.next
+            node = heapq.heappop(new_list)
+            idx = node[1]
+            answer.next = node[2]
             
+            answer = answer.next
+            if answer.next:
+                heapq.heappush(new_list, (answer.next.val, idx, answer.next))
+                
         return root.next

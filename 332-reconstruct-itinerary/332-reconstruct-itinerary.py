@@ -2,18 +2,17 @@ class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         
         path = collections.defaultdict(list)
-        for sta, des in sorted(tickets, reverse=True):
+        for sta, des in sorted(tickets):
             path[sta].append(des)
             
-        route = collections.deque()
-        def dfs(v):      
-            while path[v]:
-                dfs(path[v].pop())
-
-            route.appendleft(v)
-            
-        dfs('JFK')
+        route, stack = [], ['JFK']
         
-        return route
+        while stack:
+            
+            while path[stack[-1]]:
+                stack.append(path[stack[-1]].pop(0))
+            route.append(stack.pop())        
+        
+        return route[::-1]
         
         

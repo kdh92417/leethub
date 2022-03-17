@@ -7,13 +7,12 @@ class Solution:
         for sta, des in sorted(tickets, reverse=True):
             graph[sta].append(des)
         
-        stack  = ['JFK']
-        while stack:
+        def dfs(path):
             
-            while graph[stack[-1]]:
-                stack.append(graph[stack[-1]].pop())
-            result.append(stack.pop())
+            while graph[path]:
+                dfs(graph[path].pop())
+            result.append(path)
+        
+        dfs('JFK')
         
         return result[::-1]
-        
-        

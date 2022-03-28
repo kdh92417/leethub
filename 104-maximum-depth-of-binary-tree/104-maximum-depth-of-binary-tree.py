@@ -10,19 +10,10 @@ class Solution:
         if not root:
             return 0
         
-        queue = collections.deque([root])
-        depth = 0
+        left_level = 1 + self.maxDepth(root.left)
+        right_level = 1 + self.maxDepth(root.right)
         
-        while queue:
-            depth += 1
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-            
-        return depth
+        return max(left_level, right_level)
         
             
             

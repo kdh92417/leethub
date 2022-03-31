@@ -5,31 +5,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    longest: int = 0
+    
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        
-        diameter = 0
-        
-        def search_level(node):
+        def dfs(node):
             if not node:
-                return 0
+                return -1
             
-            left = 1 + search_level(node.left)
-            right = 1 + search_level(node.right)
+            left = dfs(node.left)
+            right = dfs(node.right)
             
-            return max(left, right)
+            self.longest = max(self.longest, left + right + 2)
             
-        stack = [root]
+            return max(left, right) + 1
         
-        while stack:
-            node = stack.pop()
-            
-            if node.left:
-                stack.append(node.left)
-            if node.right:
-                stack.append(node.right)
-            
-            diameter = max(diameter, search_level(node.left) + search_level(node.right))
-                
-        return diameter
+        dfs(root)
         
-        
+        return self.longest

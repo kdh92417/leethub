@@ -1,12 +1,14 @@
 class Solution:
-    dp = collections.defaultdict(int)
     def climbStairs(self, n: int) -> int:
+        dp = { 1: 1, 2: 2}
         
-        if n < 3:
-            return n
-        elif self.dp[n]:
-            return self.dp[n]
+        def fib(n):
+            if n in dp:
+                return dp[n]
             
-        self.dp[n] = self.climbStairs(n-2) + self.climbStairs(n-1)
-        return self.dp[n]
+            dp[n] = fib(n - 2) + fib(n - 1)
+            return dp[n]
         
+        cnt = fib(n)
+        
+        return cnt

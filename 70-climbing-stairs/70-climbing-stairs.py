@@ -9,6 +9,4 @@ class Solution:
             dp[n] = fib(n - 2) + fib(n - 1)
             return dp[n]
         
-        cnt = fib(n)
-        
-        return cnt
+        return fib(n)

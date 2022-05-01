@@ -5,17 +5,10 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    result: int = 0
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        if not root:
+            return 0
         
-        def traverse(node):
-            if node is not None:
-                traverse(node.left)
-                if node.val >= low and node.val <= high:
-                    self.result += node.val
-                traverse(node.right)
-                
-        traverse(root)
-        
-        return self.result
-                
+        return (root.val if low <= root.val <= high else 0) \
+                + self.rangeSumBST(root.right, low, high) \
+                + self.rangeSumBST(root.left, low, high)

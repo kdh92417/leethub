@@ -39,6 +39,7 @@ class Trie:
             result.append([index, node.word_id])
         
         for palindrome_word_id in node.palindrome_word_ids:
+            print('palindrome_word_id : ',palindrome_word_id)
             result.append([index, palindrome_word_id])
         
         return result

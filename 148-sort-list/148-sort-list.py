@@ -6,20 +6,16 @@
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
-        if not head:
-            return head
+        lst = []
+        p = head
+        while p:
+            lst.append(p.val)
+            p = p.next
         
-        answer = []
-        
-        while head:
-            answer.append(head.val)
-            head = head.next
-            
-        answer.sort(reverse=True)
-        head = root = ListNode(answer.pop())
-        
-        while answer:
-            root.next = ListNode(answer.pop())
-            root = root.next
+        lst.sort()
+        p = head
+        for v in lst:
+            p.val = v
+            p = p.next
         
         return head

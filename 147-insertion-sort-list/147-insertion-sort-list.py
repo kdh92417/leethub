@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def insertionSortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        cur = parent = ListNode(5)
+        cur = parent = ListNode(-100)
         
         while head:
             while cur.next and cur.next.val < head.val:

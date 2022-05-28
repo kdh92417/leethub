@@ -7,8 +7,9 @@ class Solution:
         
         for i in range(1, len(nums)):
             
-            for j in range(i, 0, -1):
-                if self.to_swap(nums[j - 1], nums[j]):
-                    nums[j], nums[j - 1] = nums[j - 1], nums[j]
+            j = i
+            while j > 0 and self.to_swap(nums[j - 1], nums[j]):
+                nums[j], nums[j - 1] = nums[j - 1], nums[j]
+                j -= 1
                     
         return str(int(''.join(map(str, nums))))

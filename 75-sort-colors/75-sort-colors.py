@@ -4,13 +4,17 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         
-        for i in range(1, len(nums)):
+        red ,white, blue = 0, 0, len(nums)
+        
+        while white < blue:
+            if nums[white] < 1:
+                nums[red], nums[white] = nums[white], nums[red]
+                white += 1
+                red += 1
+            elif nums[white] > 1:
+                blue -= 1
+                nums[white], nums[blue] = nums[blue], nums[white]
+            else:
+                white += 1
             
-            j = i
-            while j > 0:
-                if nums[j] < nums[j - 1]:
-                    nums[j], nums[j - 1] = nums[j - 1], nums[j]
-                else:
-                    break
-                j -= 1
-        print(nums)
+                

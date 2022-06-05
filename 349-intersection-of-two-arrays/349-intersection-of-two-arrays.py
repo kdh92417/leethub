@@ -2,8 +2,8 @@ class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         result: Set = set()
             
-        nums1.sort()
-        nums2.sort()
+        nums1 = sorted(set(nums1))
+        nums2 = sorted(set(nums2))
         
         i, j = 0, 0
         while i < len(nums1) and j < len(nums2):
